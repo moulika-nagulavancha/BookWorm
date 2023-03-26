@@ -17,9 +17,6 @@ import { PriceFilterComponent } from './components/price-filter/price-filter.com
 import { SearchComponent } from './components/search/search.component';
 import { ShoppingcartComponent } from './components/shoppingcart/shoppingcart.component';
 import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
-import { BookFormComponent } from './components/admin/book-form/book-form.component';
-import { ManageBooksComponent } from './components/admin/manage-books/manage-books.component';
-import { DeleteBookComponent } from './components/admin/delete-book/delete-book.component';
 
 @NgModule({
   declarations: [
@@ -38,9 +35,6 @@ import { DeleteBookComponent } from './components/admin/delete-book/delete-book.
     SearchComponent,
     ShoppingcartComponent,
     UserRegistrationComponent,
-    BookFormComponent,
-    ManageBooksComponent,
-    DeleteBookComponent
   ],
   imports: [
     BrowserModule,
