@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,8 +17,16 @@ import { PriceFilterComponent } from './components/price-filter/price-filter.com
 import { SearchComponent } from './components/search/search.component';
 import { ShoppingcartComponent } from './components/shoppingcart/shoppingcart.component';
 import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
+import { NgMaterialModule } from './ng-material/ng-material.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpInterceptorInterceptor } from './interceptors/http-interceptor.interceptor';
 
 @NgModule({
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
   declarations: [
     AppComponent,
     NavBarComponent,
@@ -38,9 +46,16 @@ import { UserRegistrationComponent } from './components/user-registration/user-r
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgMaterialModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

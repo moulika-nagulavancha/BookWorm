@@ -17,6 +17,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import {CdkTableModule} from '@angular/cdk/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSliderModule } from '@angular/material/slider';
@@ -31,6 +32,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatCardModule,
     MatInputModule,
     MatDialogModule,
+    CdkTableModule,
     MatTableModule,
     MatMenuModule,
     MatIconModule,
@@ -56,6 +58,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatInputModule,
     MatDialogModule,
     MatTableModule,
+    CdkTableModule,
     MatMenuModule,
     MatIconModule,
     MatDividerModule,
