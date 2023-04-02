@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { HomeComponent } from './components/home/home.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
 import { LoginComponent } from './components/login/login.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -14,7 +15,8 @@ import { AuthGuard } from './gaurds/auth.guard';
 
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: '', component: CarouselComponent, pathMatch: 'full' },
+  { path: 'books', component: HomeComponent},
   { path: 'filter', component: HomeComponent },
   { path: 'search', component: HomeComponent },
   { path: 'login', component: LoginComponent },
