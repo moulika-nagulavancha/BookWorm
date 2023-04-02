@@ -10,6 +10,7 @@ import { BookFilterComponent } from './components/book-filter/book-filter.compon
 import { BookCardComponent } from './components/book-card/book-card.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { HomeComponent } from './components/home/home.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
 import { LoginComponent } from './components/login/login.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -22,6 +23,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpInterceptorInterceptor } from './interceptors/http-interceptor.interceptor';
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   schemas: [
@@ -36,6 +38,7 @@ import { HttpInterceptorInterceptor } from './interceptors/http-interceptor.inte
     BookCardComponent,
     CheckoutComponent,
     HomeComponent,
+    CarouselComponent,
     LoginComponent,
     MyOrdersComponent,
     PageNotFoundComponent,
@@ -51,7 +54,8 @@ import { HttpInterceptorInterceptor } from './interceptors/http-interceptor.inte
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorInterceptor, multi: true },

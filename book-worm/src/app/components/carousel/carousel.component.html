@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="container bg-light border">
+      <ngb-carousel>
+        <ng-template ngbSlide *ngFor="let image of images">
+          <div class="wrapper">
+            <img [src]="image.src" [routerLink]="image.routeL" *ngIf="image.queryp" [queryParams]="image.queryp" alt="Random first slide">
+          </div>
+          <div class="carousel-caption">
+            <h3>{{ image.title }}</h3>
+            <p>{{ image.short }}</p>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+          
+    </div>
+
+    <div class="mini">
+      <div *ngFor="let image_ of image_other" class="d-flex justify-content-start card-deck-container mb-4 column">
+          <mat-card class="book-card mat-elevation-z2" >
+            <mat-card-content class="image-card">
+                <a [routerLink]="image_.routeL" *ngIf="image_.queryp" [queryParams]="image_.queryp" matTooltip="{{image_.title}}" matTooltipClass="example-tooltip"
+                    aria-label="Book title"><img class="preview-image" mat-card-image [src]="image_.src"
+                        alt="Book cover image"></a>
+      
+            </mat-card-content>
+            <mat-card-content>
+                <div class="card-title" style="text-align: center;">
+                    <a [routerLink]="image_.routeL" *ngIf="image_.queryp" [queryParams]="image_.queryp" style="text-decoration:none;">
+                        <strong>{{image_.title}}</strong>
+                    </a>
+                </div>
+            </mat-card-content>
+          </mat-card>
+      </div>
+    
+</div>
