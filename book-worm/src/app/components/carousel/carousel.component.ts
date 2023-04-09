@@ -35,8 +35,8 @@ export class CarouselComponent implements OnInit{
     {title: 'Buy again', routeL:'/search', queryp:this.q2, 
       src: "https://bookcart.azurewebsites.net//Upload/b868eb26-f12c-4dcf-ba19-03e0d6cafb8d36373564.jpg"},
       {title: 'All books', routeL:'/books', queryp:this.q1, 
-      src: "https://bookcart.azurewebsites.net//Upload/58dbce6c-7c82-4491-be4f-c170867ba4b6qq.jpg"},
-      {title: 'Rated 4+', routeL:'/books', queryp:this.q1, 
+      // src: "https://bookcart.azurewebsites.net//Upload/58dbce6c-7c82-4491-be4f-c170867ba4b6qq.jpg"},
+      // {title: 'Rated 4+', routeL:'/books', queryp:this.q1, 
       src: "https://bookcart.azurewebsites.net//Upload/0e6688cb-47e4-438c-9648-543f174878d5qq.jpg"},
       {title: 'Romance Novels', routeL:'/filter', queryp:this.q5, 
       src: "https://bookcart.azurewebsites.net//Upload/c63ade52-3f90-41fa-980a-1136b6ad2128HP3.jpg"}];
