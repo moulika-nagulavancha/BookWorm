@@ -4,6 +4,7 @@ ngb-carousel .wrapper {
   padding-top: 50%; /* Keep ratio for 900x500 images */
   align-items: center;
 }
+
 ngb-carousel .wrapper>img {
   position: absolute;
   width: 100%;
@@ -74,6 +75,7 @@ mat-card:hover  {
 }
 
 .mini {
+  padding-top: 15px;
   display: flex;
   flex-direction: row;
 }

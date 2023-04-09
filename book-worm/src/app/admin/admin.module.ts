@@ -7,13 +7,15 @@ import { ManageBooksComponent } from '../components/admin/manage-books/manage-bo
 import { DeleteBookComponent } from '../components/admin/delete-book/delete-book.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgMaterialModule } from '../ng-material/ng-material.module';
+import { DashboardComponent } from '../components/admin/dashboard/dashboard.component';
 
 
 @NgModule({
   declarations: [
     BookFormComponent,
     ManageBooksComponent,
-    DeleteBookComponent
+    DeleteBookComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,
