@@ -25,11 +25,6 @@ export class MyOrdersComponent implements OnInit, OnDestroy {
   expandedElement: null;
   
   @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
-
-    /*
-    * Since we are using *ngIf with mat-table.
-    * Refer - https://github.com/angular/components/issues/15008#issuecomment-516386055
-    */
     this.dataSource.paginator = mp;
   }
   userId;

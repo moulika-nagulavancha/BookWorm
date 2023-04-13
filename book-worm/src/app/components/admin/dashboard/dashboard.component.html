@@ -4,3 +4,11 @@
 <div style="float: right;" class="p-3">
     <button class="mat-elevation-z4" mat-raised-button [routerLink]='["/admin/books/manage"]' color="primary">Manage Books</button>
 </div>
+
+<div class="container">
+    <share-buttons theme="circles-dark"
+        [include]="['copy', 'facebook', 'email', 'messenger', 'mix', 'line', 'linkedin', 'pinterest', 'print', 'reddit', 'sms', 'telegram', 'tumblr', 'twitter', 'viber', 'vk', 'xing', 'whatsapp']"
+        [showIcon]="true" [showText]="false" url="https://rodrigo.kamada.com.br/" description="Angular Share Buttons"
+        twitterAccount="rodrigokamada" class="pt-5">
+    </share-buttons>
+</div>

@@ -128,7 +128,7 @@ export class BookFormComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['/admin/books']);
+    this.router.navigate(['/admin/books/manage']);
   }
 
   setBookFormData(bookFormData) {
