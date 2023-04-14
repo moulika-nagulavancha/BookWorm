@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import {FooterComponent} from './components/footer/footer.component';
 import { AddtocartComponent } from './components/addtocart/addtocart.component';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
 import { BookFilterComponent } from './components/book-filter/book-filter.component';
@@ -33,6 +34,7 @@ import { PaymentComponent } from './components/payment/payment.component';
   declarations: [
     AppComponent,
     NavBarComponent,
+    FooterComponent,
     AddtocartComponent,
     BookDetailsComponent,
     BookFilterComponent,

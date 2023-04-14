@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   priceRange = Number.MAX_SAFE_INTEGER;
   isLoading: boolean;
   searchItem: string;
+  pflag: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,6 +28,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
+    this.route.queryParams.subscribe(params => {this.pflag = params.price});
+    if (this.pflag){
+      this.priceRange=500;
+    }
     this.getAllBookData();
   }
 

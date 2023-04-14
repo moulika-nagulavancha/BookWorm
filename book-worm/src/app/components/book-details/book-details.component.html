@@ -41,4 +41,19 @@
             </div>
       </div>
     </div>
+    <div class="docs-example-viewer-title mat-elevation-z2">
+        <div class="docs-example-viewer-title-spacer">
+            <h2>Similar Books</h2>
+        </div>
+    </div>
+    <div class="row no-gutters pt-3">
+        <div class="col mb-3">
+            <div *ngIf="simbooks?.length>0;" class="d-flex justify-content-start card-deck-container mb-4">
+                <div *ngFor="let book of simbooks" class="p-1">
+                    <app-book-card [book]="book"></app-book-card>
+                </div>
+            </div>
+            
+        </div>
+    </div>
 </div>

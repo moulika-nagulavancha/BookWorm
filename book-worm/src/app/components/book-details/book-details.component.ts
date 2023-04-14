@@ -15,6 +15,8 @@ import { SubscriptionService } from 'src/app/services/subscription.service';
 export class BookDetailsComponent implements OnInit {
 
   bookId;
+  simbooks$: Observable<Book[]>;
+  simbooks: Book[];
   BookDetails$: Observable<Book>;
   userData$: Observable<User>;
   routeURL;
@@ -32,6 +34,7 @@ export class BookDetailsComponent implements OnInit {
       params => {
         this.bookId = +params.id;
         this.getBookDetails();
+        this.getSimilarBooks();
       }
     );
     this.userData$ = this.subscriptionService.userData;
@@ -44,5 +47,9 @@ export class BookDetailsComponent implements OnInit {
           console.log('Error ocurred while fetching book data : ', error);
           return EMPTY;
         }));
+  }
+
+  getSimilarBooks() {
+    this.bookService.getsimilarBooks(this.bookId).subscribe(data=>{this.simbooks = data});
   }
 }
