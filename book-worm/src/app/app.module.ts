@@ -24,6 +24,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpInterceptorInterceptor } from './interceptors/http-interceptor.interceptor';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { PaymentComponent } from './components/payment/payment.component';
 
 @NgModule({
   schemas: [
@@ -46,6 +47,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     SearchComponent,
     ShoppingcartComponent,
     UserRegistrationComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    NgbModule,
+    NgbModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorInterceptor, multi: true },

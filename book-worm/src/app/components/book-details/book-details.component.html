@@ -4,6 +4,13 @@
             <h2>Book Details</h2>
         </div>
     </div>
+    <div style="float: right;">
+        <share-buttons theme="circles-dark"
+        [include]="['copy', 'instagram', 'whatsapp']"
+        [showIcon]="true" [showText]="false" url="[[ this.routeURL]]" description="Share the Book Details using the below link"
+        class="pt-5">
+    </share-buttons>
+    </div>
     <div class="docs-example-viewer-body row" *ngIf="BookDetails$ | async as book">
         <div class="col-md-3 col-sm-12">
             <mat-card-content class="image-card">

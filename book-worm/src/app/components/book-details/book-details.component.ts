@@ -17,6 +17,7 @@ export class BookDetailsComponent implements OnInit {
   bookId;
   BookDetails$: Observable<Book>;
   userData$: Observable<User>;
+  routeURL;
 
   constructor(
     private bookService: BookService,
@@ -26,6 +27,7 @@ export class BookDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.routeURL = this.route.url;
     this.route.params.subscribe(
       params => {
         this.bookId = +params.id;

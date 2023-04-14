@@ -1,0 +1,12 @@
+<div class="container">
+    <h2 class="mt-5 mb-4">Please make the Payment and then Checkout to place the order...</h2>
+    <div>
+        <div class="col-md-5 mb-2">
+            <button (click)="makePayment(this.amount)" class="btn btn-success btn-block">Pay ${{ this.amount }}</button>
+        </div>
+        <div>
+            <button class="mat-elevation-z4" mat-raised-button color="primary"
+                                    [routerLink]='["/checkout"]'>CheckOut</button>
+        </div>
+    </div>
+</div>

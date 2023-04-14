@@ -22,6 +22,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+// For Sharing the product details on social media
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
+
 
 @NgModule({
   declarations: [],
@@ -48,7 +52,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatGridListModule,
     MatListModule,
     MatSliderModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    ShareButtonsModule,
+    ShareIconsModule
   ],
   exports: [
     CommonModule,
@@ -73,7 +79,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatGridListModule,
     MatListModule,
     MatSliderModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    ShareButtonsModule,
+    ShareIconsModule
   ]
 })
 export class NgMaterialModule { }
