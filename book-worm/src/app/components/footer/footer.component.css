@@ -1,0 +1,25 @@
+.footer {
+     position:static;
+     
+     bottom: 0;
+     width: 100%;
+     background-color: #3f51b5;
+     color: white;
+     text-align: left;
+     margin: 0px;
+     padding-top: 2%;
+     padding-bottom: 1%;
+  }
+  
+.container{
+    display: inline-flex;
+    margin-left: 5%;
+    padding: 0px;
+  }
+
+.contact {
+    padding-left: 60%;
+}
+i {
+    padding: 10px;
+}
