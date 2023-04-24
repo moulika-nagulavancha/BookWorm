@@ -36,7 +36,12 @@ export class ShoppingcartComponent implements OnInit {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(
         (result: ShoppingCart[]) => {
-          this.cartItems = result;
+          this.cartItems = result.map(b => {
+            if (b.book.price > 100) {
+              b.book.price = b.book.price / 80;
+            }
+            return b;
+          });
           this.getTotalPrice();
           this.isLoading = false;
         }, error => {

@@ -25,7 +25,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpInterceptorInterceptor } from './interceptors/http-interceptor.interceptor';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { PaymentComponent } from './components/payment/payment.component';
 
 @NgModule({
   schemas: [
@@ -49,7 +48,6 @@ import { PaymentComponent } from './components/payment/payment.component';
     SearchComponent,
     ShoppingcartComponent,
     UserRegistrationComponent,
-    PaymentComponent,
   ],
   imports: [
     BrowserModule,
