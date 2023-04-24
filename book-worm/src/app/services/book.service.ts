@@ -22,10 +22,15 @@ export class BookService {
   }
 
   addBook(book) {
-    return this.http.post(this.baseURL, book);
+    return this.getAllBooks();
+    // return this.http.post(this.baseURL, book);
   }
 
   getBookById(id: number) {
+    // var books = JSON.parse(localStorage.books);
+    // books = books.filter(b => b.bookId === id);
+    // return books;
+
     return this.books$.pipe(map(book => book.find(b => b.bookId === id)));
   }
 
@@ -34,7 +39,8 @@ export class BookService {
   }
 
   updateBookDetails(book) {
-    return this.http.put(this.baseURL, book);
+    return this.getAllBooks();
+    // return this.http.put(this.baseURL, book);
   }
 
   deleteBook(id: number) {

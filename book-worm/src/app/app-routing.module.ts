@@ -11,7 +11,6 @@ import { ShoppingcartComponent } from './components/shoppingcart/shoppingcart.co
 import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
 import { AdminAuthGuard } from './gaurds/admin-auth.guard';
 import { AuthGuard } from './gaurds/auth.guard';
-import { PaymentComponent } from './components/payment/payment.component';
 
 
 
@@ -24,7 +23,6 @@ const appRoutes: Routes = [
   { path: 'register', component: UserRegistrationComponent },
   { path: 'books/details/:id', component: BookDetailsComponent },
   { path: 'shopping-cart', component: ShoppingcartComponent },
-  { path: 'payment/:amount', component: PaymentComponent },
   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
   { path: 'myorders', component: MyOrdersComponent, canActivate: [AuthGuard] },
   {

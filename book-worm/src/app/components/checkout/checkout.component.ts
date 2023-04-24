@@ -22,6 +22,11 @@ export class CheckoutComponent implements OnInit {
   checkOutItems = new Order();
   private unsubscribe$ = new Subject<void>();
 
+  paymentHandler: any = null;
+  stripeAPIKey: any = 'pk_test_51MwUZsDNf0KfnoLTFnMsb6TAi5qmaPhWugeTjHoQmtE3bP0ahRjV79n2QQwDw4MG9Uko09WjaZyyusBHP3iCfyoX007CQCBK0A';
+  amount;
+  isPaymentDone = false;
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -30,13 +35,14 @@ export class CheckoutComponent implements OnInit {
     private snackBarService: SnackbarService,
     private subscriptionService: SubscriptionService) {
     this.userId = localStorage.getItem('userId');
+    this.invokeStripe();
   }
 
   checkOutForm = this.fb.group({
     name: ['', Validators.required],
     addressLine1: ['', Validators.required],
-    addressLine2: ['', Validators.required],
-    pincode: ['', Validators.compose([Validators.required, Validators.pattern('^[1-9][0-9]{5}$')])],
+    addressLine2: [''],
+    pincode: ['', [Validators.required]],
     state: ['', [Validators.required]]
   });
 
@@ -68,7 +74,12 @@ export class CheckoutComponent implements OnInit {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(
         (result: ShoppingCart[]) => {
-          this.checkOutItems.orderDetails = result;
+          this.checkOutItems.orderDetails = result.map(b => {
+            if (b.book.price > 100) {
+              b.book.price = b.book.price / 80;
+            }
+            return b;
+          });
           this.getTotalPrice();
         }, error => {
           console.log('Error ocurred while fetching shopping cart item : ', error);
@@ -84,7 +95,13 @@ export class CheckoutComponent implements OnInit {
   }
 
   placeOrder() {
-    if (this.checkOutForm.valid) {
+    let getPaymentInfo = document.getElementsByClassName("paymentSuccess");
+    if (getPaymentInfo.length == 0) {
+      this.snackBarService.showSnackBar("Please make the payment!...");
+    } else {
+      this.isPaymentDone = true;
+    }
+    if (this.checkOutForm.valid && this.isPaymentDone) {
       this.checkOutService.placeOrder(this.userId, this.checkOutItems)
         .pipe(takeUntil(this.unsubscribe$))
         .subscribe(
@@ -95,6 +112,42 @@ export class CheckoutComponent implements OnInit {
           }, error => {
             console.log('Error ocurred while placing order : ', error);
           });
+    }
+  }
+
+  makePayment(amount: any) {
+    const paymentHandler = (<any>window).StripeCheckout.configure({
+      key: this.stripeAPIKey,
+      locale: 'auto',
+      token: function (stripeToken: any) {
+        if (stripeToken != null && window.document.getElementById('stripe-script')) {
+          document.getElementById('stripe-script').setAttribute("class", "paymentSuccess");
+        }
+      },
+    });
+    paymentHandler.open({
+      name: 'ucm.bookworm.com',
+      description: 'Online Book Store Service',
+      amount: amount * 100,
+    });
+  }
+
+
+  invokeStripe() {
+    if (!window.document.getElementById('stripe-script')) {
+      const script = window.document.createElement('script');
+  
+      script.id = 'stripe-script';
+      script.type = 'text/javascript';
+      script.src = 'https://checkout.stripe.com/checkout.js';
+      script.onload = () => {
+        this.paymentHandler = (<any>window).StripeCheckout.configure({
+          key: this.stripeAPIKey,
+          locale: 'auto',
+          token: function (stripeToken: any) {},
+        });
+      };
+      window.document.body.appendChild(script);
     }
   }
 
