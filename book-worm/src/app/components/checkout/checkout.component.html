@@ -68,6 +68,9 @@
                 class="mat-elevation-z4">
                 <mat-card-title>
                     Order Summary
+                    <div>
+                        <button style="float: right;" (click)="makePayment(totalPrice)" mat-raised-button color="primary">Pay {{totalPrice| currency : 'USD' }}</button>
+                    </div>
                 </mat-card-title>
                 <mat-card-content>
                     <table class="table">

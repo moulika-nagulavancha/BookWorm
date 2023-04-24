@@ -4,11 +4,68 @@
 <div style="float: right;" class="p-3">
     <button class="mat-elevation-z4" mat-raised-button [routerLink]='["/admin/books/manage"]' color="primary">Manage Books</button>
 </div>
-
 <div class="container">
-    <share-buttons theme="circles-dark"
-        [include]="['copy', 'facebook', 'email', 'messenger', 'mix', 'line', 'linkedin', 'pinterest', 'print', 'reddit', 'sms', 'telegram', 'tumblr', 'twitter', 'viber', 'vk', 'xing', 'whatsapp']"
-        [showIcon]="true" [showText]="false" url="https://rodrigo.kamada.com.br/" description="Angular Share Buttons"
-        twitterAccount="rodrigokamada" class="pt-5">
-    </share-buttons>
+    <mat-card>
+    <mat-grid-list cols="4">
+        <mat-grid-tile>
+            <div class="card" style="background-color: green; color: white;">
+                <div class="card-body" style="width: 250px; height: 180px;">
+                  <h5 class="card-title">Available Books</h5>
+                  <i class="bi bi-book" style="float: right; transform: scale(3); padding-right: 5px;"></i>
+                  <p class="card-text" style="font-size: xx-large;">{{ this.noOfBooks }}</p>
+                  <p class="card-text">No. of books available in store.</p>
+                </div>
+              </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="card" style="background-color: red; color: white;">
+                <div class="card-body" style="width: 250px; height: 180px;">
+                  <h5 class="card-title">Sold Books</h5>
+                  <i class="bi bi-cash" style="float: right; transform: scale(3); padding-right: 5px;"></i>
+                  <p class="card-text" style="font-size: xx-large;">{{ this.soldBooks }}</p>
+                  <p class="card-text">No. of books sold from the store.</p>
+                </div>
+              </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="card" style="background-color: orange; color: white;">
+                <div class="card-body" style="width: 250px; height: 180px;">
+                  <h5 class="card-title">Book Categories</h5>
+                  <i class="bi bi-shop" style="float: right; transform: scale(3); padding-right: 5px;"></i>
+                  <p class="card-text" style="font-size: xx-large;">{{ this.noOfCategories }}</p>
+                  <p class="card-text">No. of book categories available.</p>
+                </div>
+              </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="card" style="background-color: blue; color: white;">
+                <div class="card-body" style="width: 250px; height: 180px;">
+                  <h5 class="card-title">No. of Customers</h5>
+                  <i class="bi bi-people" style="float: right; transform: scale(3); padding-right: 5px;"></i>
+                  <p class="card-text" style="font-size: xx-large;">{{ this.noOfCustomers }}</p>
+                  <p class="card-text">No. of customers registered.</p>
+                </div>
+              </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</mat-card>
 </div>
+<div class="container">
+    <mat-card>
+        <div>
+            <canvasjs-chart [options]="pieChartOptions" [styles]="{ width: '100%', height: '360px' }"></canvasjs-chart>
+        </div>
+    </mat-card><br><br>
+    <mat-card>
+      <div>
+          <canvasjs-chart [options]="barChartOptions" [styles]="{ width: '100%', height: '360px' }"></canvasjs-chart>
+      </div>
+  </mat-card>
+  <br><br>
+    <mat-card>
+      <div>
+          <canvasjs-chart [options]="splineChartOptions" [styles]="{ width: '100%', height: '360px' }"></canvasjs-chart>
+      </div>
+  </mat-card>
+</div>
+<br><br>

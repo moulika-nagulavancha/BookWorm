@@ -6,7 +6,7 @@
     </div>
     <div style="float: right;">
         <share-buttons theme="circles-dark"
-        [include]="['copy', 'instagram', 'whatsapp']"
+        [include]="['copy', 'facebook', 'whatsapp']"
         [showIcon]="true" [showText]="false" url="[[ this.routeURL]]" description="Share the Book Details using the below link"
         class="pt-5">
     </share-buttons>
@@ -49,7 +49,7 @@
                 </tr>
                 <tr>
                     <td><strong>Price</strong></td>
-                    <td>{{book.price | currency : 'USD'}}</td>
+                    <td>{{(book.price / 80)| currency : 'USD'}}</td>
                 </tr>
             </table>
             <div fxLayoutGap="10px grid">

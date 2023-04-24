@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
   }
 
   filterBookData() {
-    const filteredData = this.filteredProducts.filter(b => b.price <= this.priceRange).slice();
+    let filteredData = this.filteredProducts.filter(b => b.price / 80 <= this.priceRange).slice();
 
     if (this.category) {
       this.books = filteredData.filter(b => b.category.toLowerCase() === this.category.toLowerCase());

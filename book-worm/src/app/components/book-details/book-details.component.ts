@@ -53,6 +53,7 @@ export class BookDetailsComponent implements OnInit {
           console.log('Error ocurred while fetching book data : ', error);
           return EMPTY;
         }));
+      console.log(this.BookDetails$);
   }
 
   getBookInfoDetails() {

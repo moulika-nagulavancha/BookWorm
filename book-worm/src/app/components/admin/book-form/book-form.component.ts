@@ -9,10 +9,9 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'app-book-form',
   templateUrl: './book-form.component.html',
-  styleUrls: ['./book-form.component.css']
+  styleUrls: ['./book-form.component.css'],
 })
 export class BookFormComponent implements OnInit {
-
   private formData = new FormData();
   bookForm: FormGroup;
   book: Book = new Book();
@@ -27,8 +26,8 @@ export class BookFormComponent implements OnInit {
     private bookService: BookService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private router: Router) {
-
+    private router: Router
+  ) {
     this.bookForm = this.fb.group({
       bookId: 0,
       title: ['', Validators.required],
@@ -55,35 +54,27 @@ export class BookFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.bookService.categories$
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(
-        (categoryData: []) => {
-          this.categoryList = categoryData;
-        }, error => {
-          console.log('Error ocurred while fetching category List : ', error);
-        });
-
-    this.route.params.subscribe(
-      params => {
-        if (params.id) {
-          this.bookId = +params.id;
-          this.fetchBookData();
-        }
+    this.route.params.subscribe((params) => {
+      if (params.id) {
+        this.bookId = +params.id;
+        this.fetchBookData();
       }
-    );
+    });
   }
 
   fetchBookData() {
     this.formTitle = 'Edit';
-    this.bookService.getBookById(this.bookId)
+    this.bookService
+      .getBookById(this.bookId)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(
         (result: Book) => {
           this.setBookFormData(result);
-        }, error => {
+        },
+        (error) => {
           console.log('Error ocurred while fetching book data : ', error);
-        });
+        }
+      );
   }
 
   onFormSubmit() {
@@ -105,26 +96,64 @@ export class BookFormComponent implements OnInit {
   }
 
   editBookDetails() {
-    this.bookService.updateBookDetails(this.formData)
+    this.bookService
+      .updateBookDetails(this.formData)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(
         () => {
-          this.router.navigate(['/admin/books']);
-        }, error => {
+          this.saveBook('edit');
+          this.router.navigate(['/admin/books/manage']);
+        },
+        (error) => {
           console.log('Error ocurred while updating book data : ', error);
-        });
+        }
+      );
   }
 
   saveBookDetails() {
-    this.bookService.addBook(this.formData)
+    this.bookService
+      .addBook(this.formData)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(
         () => {
-          this.router.navigate(['/admin/books']);
-        }, error => {
+          this.saveBook('add');
+          this.router.navigate(['/admin/books/manage']);
+        },
+        (error) => {
           this.bookForm.reset();
           console.log('Error ocurred while adding book data : ', error);
-        });
+        }
+      );
+  }
+
+  saveBook(action: string) {
+    var books = JSON.parse(localStorage.books);
+    if (action == 'edit') {
+      for (let book of books) {
+        if (book.bookId == this.bookId) {
+          book.title = this.title.value;
+          book.price = this.price.value;
+          book.category = this.category.value;
+          book.author = this.author.value;
+          
+          localStorage.books = JSON.stringify(books);
+          break;
+        }      
+      }
+    }
+
+    if (action == 'add') {
+      let b = new Book();
+      b.bookId = Math.floor(Math.random()*898)+101;
+      b.title = this.title.value;
+      b.price = this.price.value;
+      b.author = this.author.value;
+      b.category = this.category.value;
+      books.push(b);
+      books.sort();
+      localStorage.books = JSON.stringify(books);
+    }
+    
   }
 
   cancel() {
@@ -137,9 +166,10 @@ export class BookFormComponent implements OnInit {
       title: bookFormData.title,
       author: bookFormData.author,
       category: bookFormData.category,
-      price: bookFormData.price
+      price: (bookFormData.price / 80),
     });
-    this.coverImagePath = 'https://bookcart.azurewebsites.net/Upload/' + bookFormData.coverFileName;
+    this.coverImagePath =
+      'https://bookcart.azurewebsites.net/Upload/' + bookFormData.coverFileName;
   }
 
   uploadImage(event) {

@@ -8,7 +8,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { switchMap, takeUntil } from 'rxjs/operators';
+import { BookFormComponent } from '../book-form/book-form.component';
 
 @Component({
   selector: 'app-manage-books',
@@ -20,6 +21,7 @@ export class ManageBooksComponent implements OnInit {
   displayedColumns: string[] = ['id', 'title', 'author', 'category', 'price', 'operation'];
 
   dataSource = new MatTableDataSource<Book>();
+  bookData: Book[];
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -41,7 +43,12 @@ export class ManageBooksComponent implements OnInit {
     this.bookService.getAllBooks()
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((data: Book[]) => {
-        this.dataSource.data = Object.values(data);
+        if (localStorage.books != null) {
+          this.dataSource.data = JSON.parse(localStorage.books);
+        } else {
+          this.dataSource.data = Object.values(data);
+          localStorage.books = JSON.stringify(data);
+        }
       }, error => {
         console.log('Error ocurred while fetching book details : ', error);
       });
@@ -64,12 +71,28 @@ export class ManageBooksComponent implements OnInit {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(result => {
         if (result === 1) {
-          this.getAllBookData();
+          this.removeBookFromData(id);
           this.snackBarService.showSnackBar('Data deleted successfully');
-        } else {
-          this.snackBarService.showSnackBar('Error occurred!! Try again');
         }
       });
+  }
+
+  editBookDetails(id: number) {
+    const dialogRef = this.dialog.open(BookFormComponent, {
+      data: id
+    });
+  }
+
+  removeBookFromData(id: number) {
+    var books = JSON.parse(localStorage.books);
+    for (let book of books) {
+      if (book.bookId == id) {
+          books.splice(books.indexOf(book), 1);
+          break;
+      }      
+    }
+    this.dataSource.data = books;
+    localStorage.books = JSON.stringify(books);
   }
 
   ngOnDestroy() {

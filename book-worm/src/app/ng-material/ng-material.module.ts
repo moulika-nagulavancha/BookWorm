@@ -25,10 +25,14 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 // For Sharing the product details on social media
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
-
+// For Angular charts module
+import * as CanvasJSAngularChart from '../../assets/canvasjs.angular.component';
+var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    CanvasJSChart
+  ],
   imports: [
     CommonModule,
     MatToolbarModule,
@@ -54,7 +58,7 @@ import { ShareIconsModule } from 'ngx-sharebuttons/icons';
     MatSliderModule,
     MatAutocompleteModule,
     ShareButtonsModule,
-    ShareIconsModule
+    ShareIconsModule,
   ],
   exports: [
     CommonModule,
@@ -81,7 +85,8 @@ import { ShareIconsModule } from 'ngx-sharebuttons/icons';
     MatSliderModule,
     MatAutocompleteModule,
     ShareButtonsModule,
-    ShareIconsModule
+    ShareIconsModule,
+    CanvasJSChart
   ]
 })
 export class NgMaterialModule { }

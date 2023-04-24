@@ -58,7 +58,7 @@
                                                                 [routerLink]="['/books/details/',order.book.bookId]">{{order.book.title}}</a>
                                                         </td>
                                                         <td>{{order.quantity}}</td>
-                                                        <td>{{order.book.price * order.quantity|currency : 'USD'}}</td>
+                                                        <td>{{(order.book.price / 80) * order.quantity|currency : 'USD'}}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
