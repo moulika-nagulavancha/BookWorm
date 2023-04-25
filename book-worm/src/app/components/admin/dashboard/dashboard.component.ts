@@ -103,7 +103,7 @@ export class DashboardComponent implements OnInit {
 
     this.barChartOptions = {
       title:{
-        text: "Total Impressions by Platforms"
+        text: "Total Sales by Year"
       },
       animationEnabled: true,
       axisY: {
@@ -111,7 +111,7 @@ export class DashboardComponent implements OnInit {
       },
       data: [{
         type: "bar",
-        indexLabel: "{y}",
+        indexLabel: "{y}"+"k",
         dataPoints: data
       }]
     }	;

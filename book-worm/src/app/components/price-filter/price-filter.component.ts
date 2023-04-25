@@ -17,7 +17,7 @@ export class PriceFilterComponent implements OnInit {
   max: number;
   min: number;
   value: number;
-  step = 100;
+  step = 10;
   thumbLabel = true;
 
   constructor(private bookService: BookService) { }
@@ -43,18 +43,18 @@ export class PriceFilterComponent implements OnInit {
   }
 
   onChange(event) {
-    this.priceValue.emit(event.value);
+    this.priceValue.emit(event.value*80);
   }
 
   setMinValue(book: Book[]) {
     this.min = book.reduce((prev, curr) => {
       return prev.price < curr.price ? prev : curr;
-    }).price;
+    }).price/80;
   }
 
   setMaxValue(book: Book[]) {
     this.value = this.max = book.reduce((prev, curr) => {
       return prev.price > curr.price ? prev : curr;
-    }).price;
+    }).price/80;
   }
 }
