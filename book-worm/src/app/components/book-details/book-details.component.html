@@ -5,11 +5,27 @@
         </div>
     </div>
     <div style="float: right;">
+        <div style="float: right;" *ngIf="BookInfoDetails$ | async as bookInfo"><b>Rating:</b> {{bookInfo.rating}}
+            <ng-template #t let-fill="fill">
+                <i class="bi-star-fill">
+                    <i *ngIf="fill > 0" class="bi-star-fill filled" [style.width.%]="fill"></i>
+                </i>
+            </ng-template>
+            
+            <ngb-rating
+                [(rate)]="bookInfo.rating"
+                [starTemplate]="t"
+                [readonly]="true"
+                [max]="5"
+                [ariaValueText]="ariaValueText"
+            ></ngb-rating>
+        </div>
+        
         <share-buttons theme="circles-dark"
-        [include]="['copy', 'facebook', 'whatsapp']"
-        [showIcon]="true" [showText]="false" url="[[ this.routeURL]]" description="Share the Book Details using the below link"
-        class="pt-5">
-    </share-buttons>
+            [include]="['copy', 'facebook', 'whatsapp']"
+            [showIcon]="true" [showText]="false" url="[[ this.routeURL]]" description="Share the Book Details using the below link"
+            class="pt-5">
+        </share-buttons>
     </div>
     <div class="docs-example-viewer-body row" *ngIf="BookDetails$ | async as book">
         <div class="col-md-3 col-sm-12">
@@ -17,7 +33,9 @@
                 <img class="preview-image" mat-card-image src="https://bookcart.azurewebsites.net/Upload/{{book.coverFileName}}" alt="No image available">
             </mat-card-content>
         </div>
-        <div class="col-md-5 col-sm-12">
+        <div class="col-md-5 col-sm-12" *ngIf="BookInfoDetails$ | async as bookInfo">
+            
+            
             <table class="table">
                 <tr>
                     <td><strong>Title</strong></td>
@@ -40,6 +58,7 @@
                 <app-addtocart class="mr-2" [bookId]="bookId"></app-addtocart>
             </div>
       </div>
+      <div *ngIf="BookInfoDetails$ | async as bookInfo"><p><b>Description: </b>{{bookInfo.description}}</p></div>
     </div>
     <div class="docs-example-viewer-title mat-elevation-z2">
         <div class="docs-example-viewer-title-spacer">

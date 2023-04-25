@@ -38,11 +38,10 @@ export class NavBarComponent implements OnInit {
 
     this.userDataSubscription = this.subscriptionService.userData.asObservable().subscribe(data => {
       this.userData = data;
-      if (this.userData.username == "admin") {
-        this.adminName = "admin";
-      }
     });
-
+    if (this.userId == 2493) {
+      this.adminName = "admin";
+    }
     this.cartItemCount$ = this.subscriptionService.cartItemcount$;
   }
 

@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
     this.isLoading = true;
     this.route.queryParams.subscribe(params => {this.pflag = params.price});
     if (this.pflag){
-      this.priceRange=500;
+      this.priceRange=10*80;
     }
     this.getAllBookData();
   }
@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
   }
 
   filterBookData() {
-    let filteredData = this.filteredProducts.filter(b => b.price / 80 <= this.priceRange).slice();
+    let filteredData = this.filteredProducts.filter(b => b.price <= this.priceRange).slice();
 
     if (this.category) {
       this.books = filteredData.filter(b => b.category.toLowerCase() === this.category.toLowerCase());

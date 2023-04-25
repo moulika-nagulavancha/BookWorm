@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 import { EMPTY, Observable } from 'rxjs';
-import { Book } from 'src/app/models/book';
+import { Book, BookInfo } from 'src/app/models/book';
 import { User } from 'src/app/models/user';
 import { BookService } from 'src/app/services/book.service';
 import { ActivatedRoute } from '@angular/router';
@@ -18,8 +18,13 @@ export class BookDetailsComponent implements OnInit {
   simbooks$: Observable<Book[]>;
   simbooks: Book[];
   BookDetails$: Observable<Book>;
+  BookInfoDetails$: Observable<BookInfo>;
   userData$: Observable<User>;
   routeURL;
+
+  ariaValueText(current: number, max: number) {
+		return `${current} out of ${max} hearts`;
+	}
 
   constructor(
     private bookService: BookService,
@@ -34,6 +39,7 @@ export class BookDetailsComponent implements OnInit {
       params => {
         this.bookId = +params.id;
         this.getBookDetails();
+        this.getBookInfoDetails();
         this.getSimilarBooks();
       }
     );
@@ -48,6 +54,15 @@ export class BookDetailsComponent implements OnInit {
           return EMPTY;
         }));
       console.log(this.BookDetails$);
+  }
+
+  getBookInfoDetails() {
+    this.BookInfoDetails$ = this.bookService.getBookInfoById(this.bookId)
+      .pipe(
+        catchError(error => {
+          console.log('Error ocurred while fetching book data : ', error);
+          return EMPTY;
+        }));
   }
 
   getSimilarBooks() {

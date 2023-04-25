@@ -6,3 +6,9 @@ export class Book {
     price: number;
     coverFileName: string;
 }
+
+export class BookInfo {
+    bookId: number;
+    description: string;
+    rating: number;
+}
