@@ -1,5 +1,7 @@
 import { Component, OnInit, VERSION } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Book } from 'src/app/models/book';
+import { BookService } from 'src/app/services/book.service';
 
 @Component({
   selector: 'app-carousel',
@@ -10,7 +12,7 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CarouselComponent implements OnInit{
   ngOnInit() {
-    
+    this.getAllBookData();
   }
   title = 'ng-carousel-demo';
   q1 = {};
@@ -40,8 +42,17 @@ export class CarouselComponent implements OnInit{
       {title: 'Romance Novels', routeL:'/filter', queryp:this.q5, 
       src: "https://bookcart.azurewebsites.net//Upload/c63ade52-3f90-41fa-980a-1136b6ad2128HP3.jpg"}];
   
-  constructor(config: NgbCarouselConfig) {
+  constructor(config: NgbCarouselConfig, private bookService: BookService) {
     config.interval = 2000;
+  }
+
+  getAllBookData() {
+    this.bookService.getAllBooks()
+      .subscribe((data: Book[]) => {
+        localStorage.books = JSON.stringify(data);
+      }, error => {
+        console.log('Error ocurred while fetching book details : ', error);
+      });
   }
 
 }
