@@ -20,7 +20,6 @@ export class NavBarComponent implements OnInit {
   userType = UserType;
   wishListCount$: Observable<number>;
   cartItemCount$: Observable<number>;
-  adminName: string;
 
   constructor(
     private router: Router,
@@ -39,9 +38,6 @@ export class NavBarComponent implements OnInit {
     this.userDataSubscription = this.subscriptionService.userData.asObservable().subscribe(data => {
       this.userData = data;
     });
-    if (this.userId == 2493) {
-      this.adminName = "admin";
-    }
     this.cartItemCount$ = this.subscriptionService.cartItemcount$;
   }
 

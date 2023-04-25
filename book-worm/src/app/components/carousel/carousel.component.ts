@@ -26,7 +26,7 @@ export class CarouselComponent implements OnInit{
       src: "assets/images/harrypotter.jpg"},
     {title: 'Trending this week', short: 'ROOMIES by Chritina Lauren', routeL:"/books/details/29", queryp:this.q1,
       src: "assets/images/roomies.jpg"},
-    {title: 'Top books by', short: 'Penny Reid', routeL:'/search', queryp:this.q2, 
+    {title: 'Popular books by', short: 'Penny Reid', routeL:'/search', queryp:this.q2, 
       src: "assets/images/pennyreid.jpg"}
   ];
 
