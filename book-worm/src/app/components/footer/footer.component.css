@@ -17,8 +17,8 @@
     padding: 0px;
   }
 
-.contact {
-    padding-left: 60%;
+.contact, .dev-section {
+    padding-left: 25%;
 }
 i {
     padding: 10px;
