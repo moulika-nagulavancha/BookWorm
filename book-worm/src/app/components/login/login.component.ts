@@ -49,7 +49,8 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.loginForm.valid) {
-      const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+      // const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+      const returnUrl = '/';
       this.authenticationService.login(this.loginForm.value)
         .pipe(takeUntil(this.unsubscribe$))
         .subscribe(
