@@ -1,7 +1,7 @@
 How to run the Project?
 1. Need to install 'Angular cli' in the system before running the application using 'npm install -g @angular/cli'.
 2. After installing angular cli, check the installation using 'ng version' in the command prompt. Make sure that the angular cli version is shown. if its shown, the installation is successfull.
-3. Later, navigate to the 'book-worm' folder where you can see the package.json file.
+3. Later, navigate to the 'book-worm' folder where you can see the 'src' or 'package.json' file.
 4. Do 'npm install' to install all the required dependencies which will be stored in the 'node_modules' folder.
 5. After the dependences required are installed, Run 'ng serve --open'
 6. The application will be automatically opened in the default browser at port 4200 with the following url "https:localhost:4200".
